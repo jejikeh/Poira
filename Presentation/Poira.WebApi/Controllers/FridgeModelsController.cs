@@ -22,7 +22,6 @@ public class FridgeModelsController : ApiController
     public async Task<ActionResult<ICollection<FridgeModel>>> GetAll()
     {
         var query = new GetAllFridgeModelsQuery();
-
         var vm = await Mediator.Send(query);
         return Ok(vm);
     }
