@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poira.WebApi", "Presentation\Poira.WebApi\Poira.WebApi.csproj", "{D4A7665B-641D-46C4-A062-32E7ED6C9E1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poira.WebApp", "Presentation\Poira.WebApp\Poira.WebApp.csproj", "{180C6E47-2658-465D-8C49-3E64DACA6F8C}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +31,7 @@ Global
 		{0C6DD2CD-2827-41BA-89BF-E86A53CE178C} = {1CD63BA6-0CE1-44B7-B998-4A96C26711C2}
 		{47614E84-F859-40D0-AED8-CB06C8603383} = {5CD2F45D-4673-49B7-9CA5-890D7D9660D4}
 		{D4A7665B-641D-46C4-A062-32E7ED6C9E1B} = {30393D04-AB9D-401C-809B-FE4C82832131}
+		{180C6E47-2658-465D-8C49-3E64DACA6F8C} = {30393D04-AB9D-401C-809B-FE4C82832131}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0C6DD2CD-2827-41BA-89BF-E86A53CE178C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,6 +50,10 @@ Global
 		{D4A7665B-641D-46C4-A062-32E7ED6C9E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4A7665B-641D-46C4-A062-32E7ED6C9E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4A7665B-641D-46C4-A062-32E7ED6C9E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180C6E47-2658-465D-8C49-3E64DACA6F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180C6E47-2658-465D-8C49-3E64DACA6F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180C6E47-2658-465D-8C49-3E64DACA6F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180C6E47-2658-465D-8C49-3E64DACA6F8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

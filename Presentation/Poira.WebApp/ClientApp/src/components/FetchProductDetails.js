@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
-export class FetchProduct extends Component {
-  static displayName = FetchProduct.name;
+export class FetchProductDetails extends Component {
+  static displayName = FetchProductDetails.name;
 
   constructor(props) {
     super(props);
-    this.state = { detail: [], loading: true };
-  }
-
-  componentDidMount() {
-        this.populateProductsData();
+    this.state = { id: "", detail: {}, loading: true };
+    this.handleChange = this.handleChange.bind(this)
   }
   
   static renderDetailTable(details) {
@@ -22,34 +19,37 @@ export class FetchProduct extends Component {
           </tr>
         </thead>
         <tbody>
-        {details.map(forecast =>
-            <tr key={forecast.name}>
-              <td>{forecast.name}</td>
-              <td>{forecast.defaultQuantity}</td>
+            <tr key={details.name}>
+              <td>{details.name}</td>
+              <td>{details.defaultQuantity}</td>
             </tr>
-        )}
         </tbody>
       </table>
     );
   }
-
+  
+  handleChange(event) { 
+    this.setState({id: event.target.value, detail: {}, loading: true});
+  }
+  
   render() {
     let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchProduct.renderDetailTable(this.state.detail);
+      ? <input type="text" value={this.state.id} onChange={this.handleChange}/>
+      : FetchProductDetails.renderDetailTable(this.state.detail);
 
     return (
       <div>
         <h1 id="tableLabel">Products</h1>
-        <p>This is working!</p>
+          <button className="btn btn-primary" onClick={ async () => {await this.populateProductsData(this.state.id)}}>Fetch</button>
+          <p>This is working!</p>
         {contents}
       </div>
     );
   }
 
-  async populateProductsData() {
-    const response = await fetch('products');
+  async populateProductsData(id) {
+    const response = await fetch('products/' + id);
     const data = await response.json();
-    this.setState({ detail: data, loading: false });
+    this.setState({ id: id, detail: data, loading: false });
   }
 }

@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Poira.Application.Commands.FridgeModelCommands.CreateFridgeModel;
 using Poira.Application.Queries.FridgeModelQueries.GetAllFridgeModels;
 using Poira.Domain.Models;
-using Poira.WebApi.Infrastructure;
 using Poira.WebApi.Models.FridgeModel;
+using Poira.WebApp.Infrastructure;
 
-namespace Poira.WebApi.Controllers;
+namespace Poira.WebApp.Controllers;
 
-[Route("api/[controller]")]
+[ApiController]
+[Route("[controller]")]
 public class FridgeModelsController : ApiController
 {
     private readonly IMapper _mapper;

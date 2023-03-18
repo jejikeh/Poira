@@ -3,7 +3,7 @@ using AutoMapper;
 using Poira.Application.Commands.FridgeCommands.CreateFridge;
 using Poira.Application.Common.Mappings;
 
-namespace Poira.WebApi.Models.Fridge;
+namespace Poira.WebApp.Models.Fridge;
 
 public class CreateFridgeDto : IMapWith<CreateFridgeCommand>
 {

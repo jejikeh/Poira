@@ -1,16 +1,15 @@
 using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Poira.Application.Commands.FridgeCommands.CreateFridge;
-using Poira.Application.Queries.FridgeModelQueries.GetAllFridgeModels;
 using Poira.Application.Queries.FridgeQueries.GetAllFridges;
 using Poira.Domain.Models;
-using Poira.WebApi.Infrastructure;
-using Poira.WebApi.Models.Fridge;
+using Poira.WebApp.Infrastructure;
+using Poira.WebApp.Models.Fridge;
 
-namespace Poira.WebApi.Controllers;
+namespace Poira.WebApp.Controllers;
 
-[Route("api/[controller]")]
+[ApiController]
+[Route("[controller]")]
 public class FridgesController : ApiController
 {
     private readonly IMapper _mapper;

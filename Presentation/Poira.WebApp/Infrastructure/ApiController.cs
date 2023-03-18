@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Poira.WebApi.Infrastructure;
+namespace Poira.WebApp.Infrastructure;
 
 [ApiController]
-[Route("api/[controller]/[action]")]
+[Route("[controller]/[action]")]
 public abstract class ApiController : ControllerBase
 {
     private IMediator? _mediator;

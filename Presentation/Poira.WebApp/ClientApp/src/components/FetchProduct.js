@@ -47,7 +47,7 @@ export class FetchProduct extends Component {
     );
   }
 
-  async populateProductDetailData() {
+  async populateProductsData() {
     const response = await fetch('products');
     const data = await response.json();
     this.setState({ detail: data, loading: false });

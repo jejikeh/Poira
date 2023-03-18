@@ -4,15 +4,16 @@ using Poira.Application.Common.Mappings;
 using Poira.Application.Interfaces;
 using Poira.Persistence;
 
-namespace Poira.WebApi.Extensions;
+namespace Poira.WebApp.Extensions;
 
 public static class ServiceMiddlewareExtension
 {
     public static WebApplicationBuilder RegisterServiceMiddlewares(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllersWithViews();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddRouting(x => x.LowercaseUrls = true);
 
         builder.Services.AddAutoMapper(config =>
         {
@@ -25,6 +26,14 @@ public static class ServiceMiddlewareExtension
         builder.Services
             .AddApplication()
             .AddPersistence(builder.Configuration);
+        
+        builder.Services.AddCors(options =>
+            options.AddPolicy("AllowAll", policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.AllowAnyOrigin();
+            }));
         
         return builder;
     }
