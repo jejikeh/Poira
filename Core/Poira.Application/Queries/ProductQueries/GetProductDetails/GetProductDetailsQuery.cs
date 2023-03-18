@@ -1,6 +1,8 @@
-﻿namespace Poira.Application.Queries.ProductQueries.GetProductDetails;
+﻿using MediatR;
 
-public class GetProductDetailsQuery
+namespace Poira.Application.Queries.ProductQueries.GetProductDetails;
+
+public class GetProductDetailsQuery : IRequest<ProductDetailsViewModel>
 {
-    
+    public Guid Id { get; set; }
 }

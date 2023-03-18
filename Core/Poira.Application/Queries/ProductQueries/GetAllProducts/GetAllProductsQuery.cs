@@ -1,6 +1,9 @@
-﻿namespace Poira.Application.Queries.ProductQueries.GetAllProducts;
+﻿using MediatR;
+using Poira.Application.Interfaces;
+using Poira.Domain.Models;
 
-public class GetAllProductsQuery
+namespace Poira.Application.Queries.ProductQueries.GetAllProducts;
+
+public class GetAllProductsQuery : IRequest<ICollection<Product>>
 {
-    
 }
