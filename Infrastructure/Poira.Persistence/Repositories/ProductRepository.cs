@@ -5,78 +5,74 @@ using Poira.Domain.Models;
 
 namespace Poira.Persistence.Repositories;
 
-public class FridgeModelRepository : IFridgeModelRepository
+public class ProductRepository : IProductRepository
 {
     private readonly PoiraDbContext _context;
 
-    public FridgeModelRepository(PoiraDbContext context)
+    public ProductRepository(PoiraDbContext context)
     {
         _context = context;
     }
 
-    public async Task<ICollection<FridgeModel>> GetAllFridgeModels()
+    public async Task<ICollection<Product>> GetAllProducts()
     {
-        return await _context.FridgeModels.ToListAsync();
+        return await _context.Products.ToListAsync();
     }
 
-    public async Task<ICollection<FridgeModel>> GetAllFridgeModelsByYear(DateTime dateTime)
+    public async Task<ICollection<Product>> GetAllProductsByQuantity(int quanitity)
     {
-        var fridgesModels = _context.FridgeModels.Where(fridgeModel => fridgeModel.Year == dateTime);
-        return await fridgesModels.ToListAsync();
+        var products = _context.Products.Where(fridge => fridge.DefaultQuantity == quanitity);
+        return await products.ToListAsync();
     }
 
-    public async Task<FridgeModel> GetFridgeModelById(Guid modelId)
+    public async Task<ICollection<Product>> GetAllProductsByName(string name)
     {
-        var fridgesModel = await _context.FridgeModels.FirstOrDefaultAsync(fridge => fridge.Id == modelId);
-        
-        if (fridgesModel is null)
-            throw new NotFoundException<FridgeModel>(nameof(fridgesModel));
-        
-        return fridgesModel;
+        var product = _context.Products.Where(p => p.Name == name);
+        return await product.ToListAsync();
     }
 
-    public async Task<FridgeModel> GetFridgeModelByName(string modelName)
+    public async Task<Product> GetProductById(Guid productId)
     {
-        var fridgeModel = await _context.FridgeModels.FirstOrDefaultAsync(f => f.Name == modelName);
+        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
         
-        if (fridgeModel is null)
-            throw new NotFoundException<FridgeModel>(nameof(fridgeModel));
-
-        return fridgeModel;
+        if (product is null)
+            throw new NotFoundException<Product>(nameof(product));
+        
+        return product;
     }
 
-    public async Task<FridgeModel> CreateFridgeModel(string name, DateTime year)
+    public async Task<Product> CreateProduct(string name, int defaultQuantity)
     {
-        var fridge = new FridgeModel(Guid.NewGuid(), name, year);
+        var product = new Product(Guid.NewGuid(), name, defaultQuantity);
         
-        await _context.FridgeModels.AddAsync(fridge);
+        await _context.Products.AddAsync(product);
         await _context.SaveChangesAsync();
-        return fridge;
+        return product;
     }
 
-    public async Task<FridgeModel> UpdateFridgeModel(Guid id, string newName, DateTime newYear)
+    public async Task<Product> UpdateProduct(Guid id, string newName, int newQuantity)
     {
-        var fridgeModel = await _context.FridgeModels
+        var product = await _context.Products
             .FirstOrDefaultAsync(lesson => lesson.Id == id);
 
-        if (fridgeModel is null)
-            throw new NotFoundException<FridgeModel>(nameof(fridgeModel));
+        if (product is null)
+            throw new NotFoundException<Product>(nameof(product));
 
-        fridgeModel.Name = newName;
-        fridgeModel.Year = newYear;
+        product.Name = newName;
+        product.DefaultQuantity = newQuantity;
         
         await _context.SaveChangesAsync();
-        return fridgeModel;
+        return product;
     }
 
-    public async Task DeleteFridgeModel(Guid id)
+    public async Task DeleteProduct(Guid id)
     {
-        var fridgeModel = await _context.FridgeModels.FirstOrDefaultAsync(x => x.Id == id);
+        var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
 
-        if (fridgeModel is null)
-            throw new NotFoundException<FridgeModel>(nameof(fridgeModel));
+        if (product is null)
+            throw new NotFoundException<Product>(nameof(product));
 
-        _context.FridgeModels.Remove(fridgeModel);
+        _context.Products.Remove(product);
         await _context.SaveChangesAsync();
     }
 }

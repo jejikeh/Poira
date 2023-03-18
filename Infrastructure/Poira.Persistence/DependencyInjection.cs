@@ -17,6 +17,7 @@ public static class DependencyInjection
 
         serviceCollection.AddScoped<IFridgeRepository, FridgeRepository>();
         serviceCollection.AddScoped<IFridgeModelRepository, FridgeModelRepository>();
+        serviceCollection.AddScoped<IProductRepository, ProductRepository>();
         return serviceCollection;
     }
 }
