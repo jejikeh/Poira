@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Poira.Application;
 using Poira.Application.Common.Mappings;
 using Poira.Application.Interfaces;
@@ -34,7 +36,23 @@ public static class ServiceMiddlewareExtension
                 policy.AllowAnyMethod();
                 policy.AllowAnyOrigin();
             }));
-        
+
+        builder.Services.AddAuthorization();
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = AuthOptions.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = AuthOptions.Audience,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    ValidateIssuerSigningKey = true,
+                };
+            });
+
         return builder;
     }
     

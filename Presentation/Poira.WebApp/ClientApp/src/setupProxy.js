@@ -9,7 +9,8 @@ const context = [
     "/swagger",
     "/fridges",
     "/products",
-    "/fridgemodels"
+    "/fridgemodels",
+    "/login"
 ];
 
 const onError = (err, req, resp, target) => {

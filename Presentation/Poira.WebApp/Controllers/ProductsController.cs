@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Poira.Application.Commands.ProductCommands.CreateProduct;
 using Poira.Application.Queries.ProductQueries.GetAllProducts;
@@ -21,6 +22,7 @@ public class ProductsController : ApiController
     }
     
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<ICollection<Product>>> GetAll()
     {
         var query = new GetAllProductsQuery();
